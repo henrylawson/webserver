@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "webserver-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "saucy-server-cloudimg-amd64"
+  config.vm.box = "precise-server-cloudimg-amd64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.

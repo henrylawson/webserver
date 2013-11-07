@@ -69,6 +69,8 @@ Vagrant.configure("2") do |config|
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
 
+	config.omnibus.chef_version = "11.8.0"
+
   config.vm.provision :chef_solo do |chef|
     chef.json = {
       :mysql => {

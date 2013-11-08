@@ -12,6 +12,6 @@ getting started
 * `vagrant plugin install vagrant-omnibus`
 * `gem install bundler`
 * `bundle install`
-* Copy across all `Certificates/` to `files/default/certificates/`
+* `cp -r PATH-TO-FOLDER-WITH/Certificates files/default/certificates/`
 * `vagrant up`
 

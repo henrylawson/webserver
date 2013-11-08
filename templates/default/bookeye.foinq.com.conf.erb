@@ -1,0 +1,42 @@
+<VirtualHost *:80>
+	ServerName bookeye.foinq.com
+        
+	DocumentRoot /srv/http/foinq.com
+
+        Redirect permanent / https://bookeye.foinq.com/
+</VirtualHost>
+
+
+<VirtualHost _default_:443>
+	ServerName bookeye.foinq.com
+
+	ServerAdmin webmwaster@foinq.com
+
+	ProxyPass        / http://127.0.0.1:4567/
+	ProxyPassReverse / http://127.0.0.1:4567/
+	ProxyPassReverseCookieDomain localhost bookeye.foinq.com
+	ProxyPreserveHost On
+
+	SSLEngine on
+        SSLProtocol all -SSLv2
+        SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM
+
+        SSLCertificateFile /srv/certs/bookeye.foinq.com.crt
+        SSLCertificateKeyFile /srv/certs/bookeye.foinq.com.key
+        SSLCertificateChainFile /srv/certs/sub.class1.server.ca.pem
+        SSLCACertificateFile /srv/certs/startcom.root.ca.pem
+
+	<Location />
+            Deny from all
+            AuthUserFile /srv/http/bookeye.foinq.com/users
+            AuthName authorization
+            AuthType Basic
+            Satisfy Any
+            require valid-user
+	</Location>
+
+	ErrorLog ${APACHE_LOG_DIR}/bookeye.foinq.com-error.log
+	CustomLog ${APACHE_LOG_DIR}/bookeye.foinq.com-access.log combined
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet

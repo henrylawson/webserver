@@ -1,3 +1,7 @@
+# Project Specific
+files/default/certificates
+
+# General 
 *.gem
 *.rbc
 .bundle

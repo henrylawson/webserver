@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+	ServerName foinq.com
+        ServerAlias www.foinq.com foinq.com.au www.foinq.com.au
+
+	ServerAdmin webmaster@foinq.com
+        DocumentRoot /srv/http/foinq.com
+
+	Redirect permanent / https://foinq.com/
+</VirtualHost>
+
+<VirtualHost _default_:443>
+	ServerName foinq.com
+	ServerAlias www.foinq.com foinq.com.au www.foinq.com.au
+
+	ServerAdmin webmaster@foinq.com
+	DocumentRoot /srv/http/foinq.com
+
+	SSLEngine on
+	SSLProtocol all -SSLv2
+	SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM
+
+	SSLCertificateFile /srv/certs/foinq.com.crt
+	SSLCertificateKeyFile /srv/certs/foinq.com.key
+	SSLCertificateChainFile /srv/certs/sub.class1.server.ca.pem
+	SSLCACertificateFile /srv/certs/startcom.root.ca.pem
+
+	ErrorLog ${APACHE_LOG_DIR}/foinq.com-error.log
+	CustomLog ${APACHE_LOG_DIR}/foinq.com-access.log combined
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
